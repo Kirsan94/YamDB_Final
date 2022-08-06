@@ -1,18 +1,14 @@
 from django.core.mail import EmailMessage
-from rest_framework import viewsets, views, permissions, status
-from rest_framework.response import Response
+from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
+from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .serializers import (
-    UserSerializer,
-    SignUpSerializer,
-    SignInSerializer,
-    UserInfoUpdateSerializer,
-)
 from .models import User
 from .permissions import IsAdmin
+from .serializers import (SignInSerializer, SignUpSerializer,
+                          UserInfoUpdateSerializer, UserSerializer)
 
 
 class APISignUp(views.APIView):
@@ -122,12 +118,11 @@ class UserViewSet(viewsets.ModelViewSet):
         if request.method == 'GET':
             serializer = self.get_serializer(request.user)
             return Response(serializer.data)
-        elif request.method == 'PATCH':
-            serializer = UserInfoUpdateSerializer(
-                request.user,
-                data=request.data,
-                partial=True,
-            )
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = UserInfoUpdateSerializer(
+            request.user,
+            data=request.data,
+            partial=True,
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)

@@ -13,9 +13,9 @@ import os
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-
-from reviews.models import Category, Genre, Title, Review, Comment
+from reviews.models import Category, Comment, Genre, Review, Title
 from users.models import User
+
 # Словарь допустимых параметров/названий файла
 # Определяет модель, в которую будем заливать данные
 # Дополнять по добавлению новых моделей
@@ -41,15 +41,15 @@ class Command(BaseCommand):
         for file in options['csv_file']:
             model = CHOICES[file]
             csv_file = os.path.join(BASE_DIR, './static/data/' + file + '.csv')
-            dataReader = csv.reader(
+            datareader = csv.reader(
                 open(csv_file, encoding='utf-8'),
                 delimiter=',',
                 quotechar='"'
             )
-            next(dataReader)
+            next(datareader)
             if model == User:  # Модель юзера нетипична, пришлось ручками
                 print(file + ':')
-                for row in dataReader:
+                for row in datareader:
                     print('    ', *row)
                     obj = model(
                         id=row[0],
@@ -63,7 +63,7 @@ class Command(BaseCommand):
                     obj.save()
             elif model == 'genre_title':
                 print(file + ':')
-                for row in dataReader:
+                for row in datareader:
                     print('    ', *row)
                     title = Title.objects.get(id=row[1])
                     genre = Genre.objects.get(id=row[2])
@@ -71,7 +71,7 @@ class Command(BaseCommand):
             else:
                 try:
                     print(file + ':')
-                    for row in dataReader:
+                    for row in datareader:
                         print('    ', *row)
                         obj = model(*row)
                         obj.save()

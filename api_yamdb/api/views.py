@@ -1,18 +1,13 @@
-from rest_framework import viewsets, filters, permissions
-from django.shortcuts import get_object_or_404
 from django.db.models import Avg
+from django.shortcuts import get_object_or_404
+from rest_framework import filters, permissions, viewsets
+from reviews.models import Category, Genre, Review, Title
+from users.permissions import IsAdminOrModerPermission, IsAdminOrReadOnly
 
-from users.permissions import IsAdminOrReadOnly, IsAdminOrModerPermission
-from reviews.models import Title, Category, Genre, Review
-from .mixins import GetPostDelViewSet
 from .filters import TitleSearchFilter
-from .serializers import (
-    TitleSerializer,
-    CategorySerializer,
-    GenreSerializer,
-    ReviewSerializer,
-    CommentSerializer
-)
+from .mixins import GetPostDelViewSet
+from .serializers import (CategorySerializer, CommentSerializer,
+                          GenreSerializer, ReviewSerializer, TitleSerializer)
 
 
 class TitleViewSet(viewsets.ModelViewSet):
