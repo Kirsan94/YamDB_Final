@@ -1,4 +1,4 @@
-![example workflow](https://github.com/kirsan94/yamdb_final/actions/workflows/yamdb_workflow/badge.svg)
+![example workflow](https://github.com/kirsan94/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 ## Учебный проект YaMDb
 
 Стек: Python 3, Django 2.2.16, DRF 3.12.4, SimpleJWT 4.7.2
