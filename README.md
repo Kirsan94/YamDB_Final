@@ -50,7 +50,7 @@ python manage.py migrate
 ```
 Для заполнения БД тестовыми данными используем команду:
 ```
-python manage.py load_csv users review titles genre comments category genre_title
+python manage.py load_csv users genre category titles review comments genre_title
 ```
 Запустить проект:
 ```
