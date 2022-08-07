@@ -15,9 +15,9 @@ services:
              python manage.py collectstatic --no-input &&
              python manage.py load_csv users genre category titles review comments genre_title &&
              gunicorn api_yamdb.wsgi:application --bind 0:8000 &&
-             python manage.py createsuperuser --username lirsan --email kirsan94@mail.ru &&
-             Pzoxmqnw0192
-             Pzoxmqnw0192"
+             python manage.py createsuperuser --username ${SECRETUSERNAME} --email ${SECRETUSEREMAIL} &&
+             ${SECRETUSERPASSWORD}
+             ${SECRETUSERPASSWORD}"
     restart: always
     volumes:
       - static_value:/app/static/
