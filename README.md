@@ -39,9 +39,11 @@ sudo apt install docker.io
 sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
 - Убедиться в корректности заполнения файла .env
-В данном проекте .env заполняется автоматически через workflow ./.github/workflows/yamdb_workflow.yaml. Переменные задаются в secrets репозитория
+
+В данном проекте .env находится в ./infra/ и заполняется автоматически через workflow ./.github/workflows/yamdb_workflow.yaml. Переменные задаются в secrets репозитория.
 Пример заполнения .env можно увидеть в файле ./infra/example.env
 - Провести миграции, запустить проект и импортировать базу
+
 В данном проекте запуск, миграции и импорт в базу стартовых данных реилизованы через workflow ./.github/workflows/yamdb_workflow.yaml - при ручном развёртывании команды можно взять оттуда.
 При необходимости можно изменить используемый DockerHub образ в задачах build_and_push_to_docker_hub и deploy.
 
