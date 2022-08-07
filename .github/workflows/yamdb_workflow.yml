@@ -73,6 +73,14 @@ jobs:
             echo SECRETUSEREMAIL=${{ secrets.SECRETUSEREMAIL }} >> .env
             echo SECRETUSERPASSWORD=${{ secrets.SECRETUSERPASSWORD }} >> .env
             sudo docker-compose up -d
+            sudo docker exec -t -i lirsan_web_1 /bin/bash
+            python manage.py makemigrations
+            python manage.py migrate
+            python manage.py collectstatic --no-input
+            python manage.py load_csv users genre category titles review comments genre_title
+            python manage.py createsuperuser --username ${SECRETUSERNAME} --email ${SECRETUSEREMAIL}
+            ${SECRETUSERPASSWORD}
+            ${SECRETUSERPASSWORD}
 
   send_message:
     runs-on: ubuntu-latest
