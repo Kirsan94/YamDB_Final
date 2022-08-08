@@ -1,9 +1,9 @@
 ![example workflow](https://github.com/kirsan94/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 ## Учебный проект YaMDb
 
-Стек: Python 3, Django 2.2.16, DRF 3.12.4, SimpleJWT 4.7.2
+Стек: Python 3, Django 2.2.16, DRF 3.12.4, SimpleJWT 4.7.2, Docker 20.10.12
 
-Требуемые пакеты устанавливаются из requirements.txt
+Требуемые пакеты устанавливаются из ./api_yamdb/requirements.txt
 
 Проект YaMDb собирает отзывы (Review) пользователей на произведения (Titles). Произведения делятся на категории: «Книги», «Фильмы», «Музыка». Список категорий (Category) может быть расширен администратором (например, можно добавить категорию «Изобразительное искусство» или «Ювелирка»).
 
