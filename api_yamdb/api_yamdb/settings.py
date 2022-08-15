@@ -178,7 +178,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'yamdb_log.log'),
-            'maxBytes': 1024*1024*30,  # 15MB
+            'maxBytes': 1024 * 1024 * 30,  # 15MB
             'backupCount': 10,
         },
     },
